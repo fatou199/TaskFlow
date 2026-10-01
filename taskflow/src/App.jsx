@@ -1,23 +1,19 @@
 import { useState } from "react";
-import heroImg from "./assets/hero.png";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
 import "./App.css";
-import Card from "./components/Card";
+import Column from "./components/Column";
 
 function App() {
   const tasks = [
-    { id: 1, title: "Faire les courses" },
-    { id: 2, title: "Appeler le tuteur" },
-    { id: 3, title: "Réviser React" },
-    { id: 4, title: "Aller à la salle de sport" },
+    { id: 1, title: "Faire les courses", status: "todo" },
+    { id: 2, title: "Appeler le tuteur", status: "doing" },
+    { id: 3, title: "Réviser React", status: "done" },
   ];
 
   return (
-    <div>
-      {tasks.map((task) => (
-        <Card key={task.id} title={task.title} />
-      ))}
+    <div className="board">
+      <Column title="À faire" tasks={tasks.filter((t) => t.status === "todo")} />
+      <Column title="En cours" tasks={tasks.filter((t) => t.status === "doing")} />
+      <Column title="Terminé" tasks={tasks.filter((t) => t.status === "done")} />
     </div>
   );
 }
